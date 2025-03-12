@@ -17,19 +17,25 @@ struct ContentView: View {
     func calculateSCTs() {
         switch selectedLevel {
         case "Excellent/Masters":
-            if let smallDogMeasurement = Int(excellentSmallDogMeasurement),
-               let bigDogMeasurement = Int(excellentBigDogMeasurement),
-               smallDogMeasurement > 0, bigDogMeasurement > 0 {
-                let averageMeasurement = (smallDogMeasurement + bigDogMeasurement) / 2
-                computedYards = [smallDogMeasurement / 3, smallDogMeasurement / 3, averageMeasurement / 3, bigDogMeasurement / 3, bigDogMeasurement / 3]
+            if let smallDogValue = Int(excellentSmallDogMeasurement),
+               let bigDogValue = Int(excellentBigDogMeasurement),
+               smallDogValue > 0, bigDogValue > 0 {
+                
+                let adjustedSmall = smallDogValue > 220 ? smallDogValue / 3 : smallDogValue
+                let adjustedBig = bigDogValue > 220 ? bigDogValue / 3 : bigDogValue
+                let averageValue = (adjustedSmall + adjustedBig) / 2
+                
+                computedYards = [adjustedSmall, adjustedSmall, averageValue, adjustedBig, adjustedBig]
             }
         case "Open":
-            if let openMeasurement = Int(openMeasurement), openMeasurement > 0 {
-                computedYards = Array(repeating: openMeasurement / 3, count: 5)
+            if let openValue = Int(openMeasurement), openValue > 0 {
+                let adjustedOpenValue = openValue > 220 ? openValue / 3 : openValue
+                computedYards = Array(repeating: adjustedOpenValue, count: 5)
             }
         case "Novice":
-            if let noviceMeasurement = Int(noviceMeasurement), noviceMeasurement > 0 {
-                computedYards = Array(repeating: noviceMeasurement / 3, count: 5)
+            if let noviceValue = Int(noviceMeasurement), noviceValue > 0 {
+                let adjustedNoviceValue = noviceValue > 220 ? noviceValue / 3 : noviceValue
+                computedYards = Array(repeating: adjustedNoviceValue, count: 5)
             }
         default:
             computedYards = Array(repeating: 0, count: 5)
@@ -118,4 +124,3 @@ struct TableView: View {
         .border(Color.gray, width: 1)
     }
 }
-
