@@ -1,83 +1,86 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var courseDistanceFeet = ""
-    @State private var excellentYPSMin = ""
-    @State private var excellentYPSMax = ""
-    @State private var openYPS = ""
-    @State private var noviceYPS = ""
-    @State private var selectedCategory = "Excellent/Masters"
+    @State private var excellentSmallDogMeasurement = ""
+    @State private var excellentBigDogMeasurement = ""
+    @State private var openMeasurement = ""
+    @State private var noviceMeasurement = ""
+    @State private var selectedLevel = "Excellent/Masters"
+    @State private var selectedClassType = "Standard"
+    @State private var computedYards = Array(repeating: 0, count: 5)
     
-    let categories = ["Excellent/Masters", "Open", "Novice"]
+    let levels = ["Excellent/Masters", "Open", "Novice"]
+    let classTypes = ["Standard", "Jumpers with Weaves"]
+    let regularValues = [8, 12, 16, 20, 24]
+    let preferredValues = [4, 8, 12, 16, 20]
     
-    var computedSCTs: [String] {
-        guard let distanceFeet = Double(courseDistanceFeet), distanceFeet > 0 else { return [] }
-        let distanceYards = distanceFeet / 3.0
-        
-        var scts: [String] = []
-        
-        switch selectedCategory {
+    func calculateSCTs() {
+        switch selectedLevel {
         case "Excellent/Masters":
-            if let minYPS = Double(excellentYPSMin), minYPS > 0,
-               let maxYPS = Double(excellentYPSMax), maxYPS > 0 {
-                scts.append("Excellent SCT (Min Speed): \(String(format: "%.2f", distanceYards / minYPS)) sec")
-                scts.append("Excellent SCT (Max Speed): \(String(format: "%.2f", distanceYards / maxYPS)) sec")
+            if let smallDogMeasurement = Int(excellentSmallDogMeasurement),
+               let bigDogMeasurement = Int(excellentBigDogMeasurement),
+               smallDogMeasurement > 0, bigDogMeasurement > 0 {
+                let averageMeasurement = (smallDogMeasurement + bigDogMeasurement) / 2
+                computedYards = [smallDogMeasurement / 3, smallDogMeasurement / 3, averageMeasurement / 3, bigDogMeasurement / 3, bigDogMeasurement / 3]
             }
         case "Open":
-            if let openSpeed = Double(openYPS), openSpeed > 0 {
-                scts.append("Open SCT: \(String(format: "%.2f", distanceYards / openSpeed)) sec")
+            if let openMeasurement = Int(openMeasurement), openMeasurement > 0 {
+                computedYards = Array(repeating: openMeasurement / 3, count: 5)
             }
         case "Novice":
-            if let noviceSpeed = Double(noviceYPS), noviceSpeed > 0 {
-                scts.append("Novice SCT: \(String(format: "%.2f", distanceYards / noviceSpeed)) sec")
+            if let noviceMeasurement = Int(noviceMeasurement), noviceMeasurement > 0 {
+                computedYards = Array(repeating: noviceMeasurement / 3, count: 5)
             }
         default:
-            break
+            computedYards = Array(repeating: 0, count: 5)
         }
-        
-        return scts
     }
     
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                TextField("Course Distance (Feet)", text: $courseDistanceFeet)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.decimalPad)
-                
-                Picker("Select Category", selection: $selectedCategory) {
-                    ForEach(categories, id: \..self) { category in
-                        Text(category)
-                    }
+                Picker("Select Level", selection: $selectedLevel) {
+                    ForEach(levels, id: \..self) { Text($0) }
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 
-                if selectedCategory == "Excellent/Masters" {
-                    TextField("Excellent/Masters Min YPS", text: $excellentYPSMin)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.decimalPad)
-                    
-                    TextField("Excellent/Masters Max YPS", text: $excellentYPSMax)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.decimalPad)
+                Picker("Select Class Type", selection: $selectedClassType) {
+                    ForEach(classTypes, id: \..self) { Text($0) }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                
+                Group {
+                    if selectedLevel == "Excellent/Masters" {
+                        TextField("Excellent/Masters Small Dog Measurement", text: $excellentSmallDogMeasurement)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.numberPad)
+                        TextField("Excellent/Masters Big Dog Measurement", text: $excellentBigDogMeasurement)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.numberPad)
+                    } else if selectedLevel == "Open" {
+                        TextField("Open Measurement", text: $openMeasurement)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.numberPad)
+                    } else if selectedLevel == "Novice" {
+                        TextField("Novice Measurement", text: $noviceMeasurement)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.numberPad)
+                    }
                 }
                 
-                if selectedCategory == "Open" {
-                    TextField("Open YPS", text: $openYPS)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.decimalPad)
+                Button(action: calculateSCTs) {
+                    Text("Calculate SCTs")
+                        .font(.headline)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
+                .padding(.horizontal)
                 
-                if selectedCategory == "Novice" {
-                    TextField("Novice YPS", text: $noviceYPS)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.decimalPad)
-                }
-                
-                List(computedSCTs, id: \..self) { sct in
-                    Text(sct)
-                }
-                .frame(height: 200)
+                TableView(computedYards: computedYards, regularValues: regularValues, preferredValues: preferredValues)
+                    .frame(height: 250)
                 
                 Spacer()
             }
@@ -86,3 +89,33 @@ struct ContentView: View {
         }
     }
 }
+
+struct TableView: View {
+    let computedYards: [Int]
+    let regularValues: [Int]
+    let preferredValues: [Int]
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text("YDS").bold().frame(width: 60)
+                Text("Regular").bold().frame(width: 80)
+                Spacer()
+                Text("Preferred").bold().frame(width: 80)
+            }
+            Divider()
+            
+            ForEach(0..<5, id: \..self) { index in
+                HStack {
+                    Text("\(computedYards[index])").frame(width: 60)
+                    Text("\(regularValues[index])").frame(width: 80)
+                    Spacer()
+                    Text("\(preferredValues[index])").frame(width: 80)
+                }
+            }
+        }
+        .padding()
+        .border(Color.gray, width: 1)
+    }
+}
+
