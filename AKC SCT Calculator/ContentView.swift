@@ -1,22 +1,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var excellentSmallDogMeasurement = ""
-    @State private var excellentBigDogMeasurement = ""
-    @State private var openMeasurement = ""
-    @State private var noviceMeasurement = ""
-    @State private var selectedLevel = "Excellent/Masters"
+    @State internal var excellentSmallDogMeasurement = ""
+    @State internal var excellentBigDogMeasurement = ""
+    @State internal var openMeasurement = ""
+    @State internal var noviceMeasurement = ""
+    @State internal var selectedLevel = "Excellent/Masters"
     @State private var selectedClassType = "Standard"
-    @State private var computedYards = Array(repeating: 0, count: 5)
+    @State internal var computedYards = Array(repeating: 0, count: 5)
     
     let levels = ["Excellent/Masters", "Open", "Novice"]
     let classTypes = ["Standard", "Jumpers with Weaves"]
     let regularValues = [8, 12, 16, 20, 24]
     let preferredValues = [4, 8, 12, 16, 20]
     
+    func convertToYards(_ value: Int) -> Int { value > 220 ? value / 3 : value }
+    
     func calculateSCTs() {
-        func convertToYards(_ value: Int) -> Int { value > 220 ? value / 3 : value }
-        
         switch selectedLevel {
         case "Excellent/Masters":
             if let smallDogValue = Int(excellentSmallDogMeasurement),

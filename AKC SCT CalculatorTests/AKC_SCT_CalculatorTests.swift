@@ -5,13 +5,15 @@
 //  Created by FRANK GILMER on 3/11/25.
 //
 
-import Testing
-@testable import AKC_SCT_Calculator
+import XCTest
+@testable import AKC_SCT_Calculator  // Replace 'YourAppName' with your actual project name
 
-struct AKC_SCT_CalculatorTests {
-
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+class AKC_SCT_CalculatorTests: XCTestCase {
+    
+    func testConvertToYards() {
+        let view = ContentView()
+        XCTAssertEqual(view.convertToYards(300), 100)
+        XCTAssertEqual(view.convertToYards(150), 150)
+        XCTAssertEqual(view.convertToYards(0), 0)
     }
-
 }
