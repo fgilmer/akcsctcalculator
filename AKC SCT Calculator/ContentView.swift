@@ -15,27 +15,27 @@ struct ContentView: View {
     let preferredValues = [4, 8, 12, 16, 20]
     
     func calculateSCTs() {
+        func convertToYards(_ value: Int) -> Int { value > 220 ? value / 3 : value }
+        
         switch selectedLevel {
         case "Excellent/Masters":
             if let smallDogValue = Int(excellentSmallDogMeasurement),
                let bigDogValue = Int(excellentBigDogMeasurement),
                smallDogValue > 0, bigDogValue > 0 {
                 
-                let adjustedSmall = smallDogValue > 220 ? smallDogValue / 3 : smallDogValue
-                let adjustedBig = bigDogValue > 220 ? bigDogValue / 3 : bigDogValue
+                let adjustedSmall = convertToYards(smallDogValue)
+                let adjustedBig = convertToYards(bigDogValue)
                 let averageValue = (adjustedSmall + adjustedBig) / 2
                 
                 computedYards = [adjustedSmall, adjustedSmall, averageValue, adjustedBig, adjustedBig]
             }
         case "Open":
             if let openValue = Int(openMeasurement), openValue > 0 {
-                let adjustedOpenValue = openValue > 220 ? openValue / 3 : openValue
-                computedYards = Array(repeating: adjustedOpenValue, count: 5)
+                computedYards = Array(repeating: convertToYards(openValue), count: 5)
             }
         case "Novice":
             if let noviceValue = Int(noviceMeasurement), noviceValue > 0 {
-                let adjustedNoviceValue = noviceValue > 220 ? noviceValue / 3 : noviceValue
-                computedYards = Array(repeating: adjustedNoviceValue, count: 5)
+                computedYards = Array(repeating: convertToYards(noviceValue), count: 5)
             }
         default:
             computedYards = Array(repeating: 0, count: 5)
@@ -57,20 +57,12 @@ struct ContentView: View {
                 
                 Group {
                     if selectedLevel == "Excellent/Masters" {
-                        TextField("Excellent/Masters Small Dog Measurement", text: $excellentSmallDogMeasurement)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                        TextField("Excellent/Masters Big Dog Measurement", text: $excellentBigDogMeasurement)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
+                        MeasurementInput(title: "Small Dog Measurement", value: $excellentSmallDogMeasurement)
+                        MeasurementInput(title: "Big Dog Measurement", value: $excellentBigDogMeasurement)
                     } else if selectedLevel == "Open" {
-                        TextField("Open Measurement", text: $openMeasurement)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
+                        MeasurementInput(title: "Open Measurement", value: $openMeasurement)
                     } else if selectedLevel == "Novice" {
-                        TextField("Novice Measurement", text: $noviceMeasurement)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
+                        MeasurementInput(title: "Novice Measurement", value: $noviceMeasurement)
                     }
                 }
                 
@@ -93,6 +85,17 @@ struct ContentView: View {
             .padding()
             .navigationTitle("AKC SCT Calculator")
         }
+    }
+}
+
+struct MeasurementInput: View {
+    let title: String
+    @Binding var value: String
+    
+    var body: some View {
+        TextField(title, text: $value)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .keyboardType(.numberPad)
     }
 }
 
