@@ -1,86 +1,88 @@
-//
-//  ContentView.swift
-//  AKC SCT Calculator
-//
-//  Created by FRANK GILMER on 3/11/25.
-//
-
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    @State private var courseDistanceFeet = ""
+    @State private var excellentYPSMin = ""
+    @State private var excellentYPSMax = ""
+    @State private var openYPS = ""
+    @State private var noviceYPS = ""
+    @State private var selectedCategory = "Excellent/Masters"
+    
+    let categories = ["Excellent/Masters", "Open", "Novice"]
+    
+    var computedSCTs: [String] {
+        guard let distanceFeet = Double(courseDistanceFeet), distanceFeet > 0 else { return [] }
+        let distanceYards = distanceFeet / 3.0
+        
+        var scts: [String] = []
+        
+        switch selectedCategory {
+        case "Excellent/Masters":
+            if let minYPS = Double(excellentYPSMin), minYPS > 0,
+               let maxYPS = Double(excellentYPSMax), maxYPS > 0 {
+                scts.append("Excellent SCT (Min Speed): \(String(format: "%.2f", distanceYards / minYPS)) sec")
+                scts.append("Excellent SCT (Max Speed): \(String(format: "%.2f", distanceYards / maxYPS)) sec")
+            }
+        case "Open":
+            if let openSpeed = Double(openYPS), openSpeed > 0 {
+                scts.append("Open SCT: \(String(format: "%.2f", distanceYards / openSpeed)) sec")
+            }
+        case "Novice":
+            if let noviceSpeed = Double(noviceYPS), noviceSpeed > 0 {
+                scts.append("Novice SCT: \(String(format: "%.2f", distanceYards / noviceSpeed)) sec")
+            }
+        default:
+            break
+        }
+        
+        return scts
+    }
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+            VStack(spacing: 20) {
+                TextField("Course Distance (Feet)", text: $courseDistanceFeet)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.decimalPad)
+                
+                Picker("Select Category", selection: $selectedCategory) {
+                    ForEach(categories, id: \..self) { category in
+                        Text(category)
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                .pickerStyle(SegmentedPickerStyle())
+                
+                if selectedCategory == "Excellent/Masters" {
+                    TextField("Excellent/Masters Min YPS", text: $excellentYPSMin)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.decimalPad)
+                    
+                    TextField("Excellent/Masters Max YPS", text: $excellentYPSMax)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.decimalPad)
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+                
+                if selectedCategory == "Open" {
+                    TextField("Open YPS", text: $openYPS)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.decimalPad)
                 }
+                
+                if selectedCategory == "Novice" {
+                    TextField("Novice YPS", text: $noviceYPS)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.decimalPad)
+                }
+                
+                List(computedSCTs, id: \..self) { sct in
+                    Text(sct)
+                }
+                .frame(height: 200)
+                
+                Spacer()
             }
-            Text("Select an item")
+            .padding()
+            .navigationTitle("AKC SCT Calculator")
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-}
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-#Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }
