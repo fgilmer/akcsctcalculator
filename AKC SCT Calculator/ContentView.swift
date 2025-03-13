@@ -8,88 +8,53 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var smallDogMeasurement = ""
-    @State private var bigDogMeasurement = ""
-    @State private var selectedLevel: Level = .excellentMasters
-    @State private var selectedClassType: ClassType = .standard
-    @State private var computedYards = Array(repeating: 0, count: 5)
-    @State private var regularYPS = Array(repeating: 0, count: 5)
-    @State private var warningMessages = [String]()
+    @ObservedObject var viewModel = SCTViewModel()
 
-    let regularValues = [8, 12, 16, 20, 24]
-    let preferredValues = [4, 8, 12, 16, 20]
-    let calculator = SCTCalculator()
-    
-    func calculateSCTs() {
-        computedYards = calculator.calculateComputedYards(
-            level: selectedLevel,
-            smallDogMeasurement: Int(smallDogMeasurement),
-            bigDogMeasurement: Int(bigDogMeasurement)
-        )
-        
-        regularYPS = calculator.calculateYardsPerSecond(
-            level: selectedLevel,
-            classType: selectedClassType,
-            computedYards: computedYards
-        )
-        
-        warningMessages = calculator.checkComputedYards(
-            level: selectedLevel,
-            classType: selectedClassType,
-            computedYards: computedYards
-        )
-    }
-    
     var body: some View {
-        NavigationView {
-            VStack(spacing: 10) {
-                // 🔹 Picker for Level Enum
-                Picker("Select Level", selection: $selectedLevel) {
-                    ForEach(Level.allCases, id: \.self) { level in
-                        Text(level.rawValue).tag(level)
-                    }
+        VStack(spacing: 20) {
+            Picker("Select Level", selection: $viewModel.selectedLevel) {
+                ForEach(Level.allCases, id: \.self) { level in
+                    Text(level.rawValue).tag(level)
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                
-                // 🔹 Picker for ClassType Enum
-                Picker("Select Class Type", selection: $selectedClassType) {
-                    ForEach(ClassType.allCases, id: \.self) { classType in
-                        Text(classType.rawValue).tag(classType)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                
-                // 🔹 Show Small Dog Measurement only for Excellent/Masters
-                if selectedLevel == .excellentMasters {
-                    MeasurementInput(title: "Small Dog Measurement", value: $smallDogMeasurement)
-                }
-                
-                MeasurementInput(title: "Big Dog Measurement", value: $bigDogMeasurement)
-                
-                Button(action: calculateSCTs) {
-                    Text("Calculate SCTs")
-                        .font(.headline)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding(.horizontal)
-                
-                TableView(
-                    computedYards: computedYards,
-                    regularValues: regularValues,
-                    preferredValues: preferredValues,
-                    regularYPS: regularYPS
-                )
-                .frame(height: 250)
-                
-                WarningOutput(warnings: warningMessages)
             }
-            .padding()
-            .navigationTitle("AKC SCT Calculator")
+            .pickerStyle(SegmentedPickerStyle())
+
+            Picker("Select Class Type", selection: $viewModel.selectedClassType) {
+                ForEach(ClassType.allCases, id: \.self) { classType in
+                    Text(classType.rawValue).tag(classType)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+
+            if viewModel.selectedLevel == .excellentMasters {
+                MeasurementInput(title: "Small Dog Measurement", value: $viewModel.smallDogMeasurement)
+            }
+            
+            MeasurementInput(title: "Big Dog Measurement", value: $viewModel.bigDogMeasurement)
+
+            Button(action: viewModel.calculateSCTs) {
+                Text("Calculate SCTs")
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
+
+            TableView(
+                computedYards: viewModel.computedYards,
+                regularValues: [8, 12, 16, 20, 24],
+                preferredValues: [4, 8, 12, 16, 20],
+                regularYPS: viewModel.regularYPS
+            )
+            .frame(height: 250)
+
+            WarningOutput(warnings: viewModel.warningMessages)
         }
+        .padding()
+        .navigationTitle("AKC SCT Calculator")
     }
 }
 

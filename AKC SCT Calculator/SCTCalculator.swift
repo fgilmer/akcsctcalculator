@@ -39,7 +39,7 @@ class SCTCalculator {
         }
     }
     
-    func getBaseYPS(level: Level, classType: ClassType) -> [Double] {
+    func getBaseYPS(level: Level?, classType: ClassType?) -> [Double] {
         let baseYPS: [Level: [ClassType: [Double]]] = [
             .excellentMasters: [
                 .standard: [2.50, 2.70, 2.85, 3.10, 2.90],
@@ -55,8 +55,14 @@ class SCTCalculator {
             ]
         ]
         
-        return baseYPS[level]?[classType] ?? Array(repeating: 0, count: 5)
+        // Ensure unknown levels and class types return default
+        guard let validLevel = level, let validClassType = classType, let ypsValues = baseYPS[validLevel]?[validClassType] else {
+            return Array(repeating: 0, count: 5)
+        }
+        
+        return ypsValues
     }
+
     
     func calculateComputedYards(level: Level, smallDogMeasurement: Int?, bigDogMeasurement: Int?) -> [Int] {
         guard let big = bigDogMeasurement, big > 0 else {
