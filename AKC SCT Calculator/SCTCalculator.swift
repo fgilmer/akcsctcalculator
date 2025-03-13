@@ -1,3 +1,10 @@
+//
+//  SCTCalculator.swift
+//  AKC SCT Calculator Calculations
+//
+//  Created by FRANK GILMER on 3/13/25.
+//
+
 class SCTCalculator {
     func convertToYards(_ value: Int) -> Int {
         return value > 220 ? value / 3 : value
