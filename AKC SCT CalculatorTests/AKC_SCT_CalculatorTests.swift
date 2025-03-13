@@ -29,4 +29,11 @@ class AKC_SCT_CalculatorTests: XCTestCase {
         XCTAssertEqual(calculator.calculateComputedYards(level: "Open", smallDogMeasurement: nil, bigDogMeasurement: 600), [200, 200, 200, 200, 200])
         XCTAssertEqual(calculator.calculateComputedYards(level: "Novice", smallDogMeasurement: nil, bigDogMeasurement: 300), [100, 100, 100, 100, 100])
     }
+    
+    func testCalculateYardsPerSecond() {
+        XCTAssertEqual(calculator.calculateYardsPerSecond(level: "Excellent/Masters", classType: "Standard", computedYards: [179, 179, 185, 190, 190]), [72, 66, 65, 61, 66])
+        XCTAssertEqual(calculator.calculateYardsPerSecond(level: "Open", classType: "Standard", computedYards: [190, 190, 190, 190, 190]), [89, 86, 81, 77, 80])
+        XCTAssertEqual(calculator.calculateYardsPerSecond(level: "Novice", classType: "Standard", computedYards: [190, 190, 190, 190, 190]), [108, 100, 93, 89, 91])
+        XCTAssertEqual(calculator.calculateYardsPerSecond(level: "Excellent/Masters", classType: "Jumpers with Weaves", computedYards: [168, 168, 175, 182, 182]), [55, 52, 50, 49, 51])
+    }
 }

@@ -13,7 +13,8 @@ struct ContentView: View {
     @State private var selectedLevel = "Excellent/Masters"
     @State private var selectedClassType = "Standard"
     @State private var computedYards = Array(repeating: 0, count: 5)
-    
+    @State private var regularYPS = Array(repeating: 0, count: 5)
+
     let levels = ["Excellent/Masters", "Open", "Novice"]
     let classTypes = ["Standard", "Jumpers with Weaves"]
     let regularValues = [8, 12, 16, 20, 24]
@@ -26,6 +27,9 @@ struct ContentView: View {
             smallDogMeasurement: Int(smallDogMeasurement),
             bigDogMeasurement: Int(bigDogMeasurement)
         )
+        regularYPS = calculator.calculateYardsPerSecond(level: selectedLevel,
+                                                        classType: selectedClassType,
+                                                        computedYards: computedYards)
     }
     
     var body: some View {
@@ -57,7 +61,7 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
                 
-                TableView(computedYards: computedYards, regularValues: regularValues, preferredValues: preferredValues)
+                TableView(computedYards: computedYards, regularValues: regularValues, preferredValues: preferredValues, regularYPS: regularYPS)
                     .frame(height: 250)
                 
                 Spacer()
@@ -88,6 +92,7 @@ struct TableView: View {
     let computedYards: [Int]
     let regularValues: [Int]
     let preferredValues: [Int]
+    let regularYPS: [Int]
     
     var body: some View {
         VStack {
@@ -103,8 +108,9 @@ struct TableView: View {
                 HStack {
                     Text("\(computedYards[index])").frame(width: 60)
                     Text("\(regularValues[index])").frame(width: 80)
-                    Spacer()
+                    Text("\(regularYPS[index])").frame(width: 80)
                     Text("\(preferredValues[index])").frame(width: 80)
+                    Text("\(regularYPS[index] + 5)").frame(width: 80)
                 }
             }
         }
