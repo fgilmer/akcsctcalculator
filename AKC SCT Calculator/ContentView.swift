@@ -10,13 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @State private var smallDogMeasurement = ""
     @State private var bigDogMeasurement = ""
-    @State private var selectedLevel = "Excellent/Masters"
-    @State private var selectedClassType = "Standard"
+    @State private var selectedLevel: Level = .excellentMasters
+    @State private var selectedClassType: ClassType = .standard
     @State private var computedYards = Array(repeating: 0, count: 5)
     @State private var regularYPS = Array(repeating: 0, count: 5)
+    @State private var warningMessages = [String]()
 
-    let levels = ["Excellent/Masters", "Open", "Novice"]
-    let classTypes = ["Standard", "Jumpers with Weaves"]
     let regularValues = [8, 12, 16, 20, 24]
     let preferredValues = [4, 8, 12, 16, 20]
     let calculator = SCTCalculator()
@@ -27,27 +26,44 @@ struct ContentView: View {
             smallDogMeasurement: Int(smallDogMeasurement),
             bigDogMeasurement: Int(bigDogMeasurement)
         )
-        regularYPS = calculator.calculateYardsPerSecond(level: selectedLevel,
-                                                        classType: selectedClassType,
-                                                        computedYards: computedYards)
+        
+        regularYPS = calculator.calculateYardsPerSecond(
+            level: selectedLevel,
+            classType: selectedClassType,
+            computedYards: computedYards
+        )
+        
+        warningMessages = calculator.checkComputedYards(
+            level: selectedLevel,
+            classType: selectedClassType,
+            computedYards: computedYards
+        )
     }
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
+            VStack(spacing: 10) {
+                // 🔹 Picker for Level Enum
                 Picker("Select Level", selection: $selectedLevel) {
-                    ForEach(levels, id: \..self) { Text($0) }
+                    ForEach(Level.allCases, id: \.self) { level in
+                        Text(level.rawValue).tag(level)
+                    }
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 
+                // 🔹 Picker for ClassType Enum
                 Picker("Select Class Type", selection: $selectedClassType) {
-                    ForEach(classTypes, id: \..self) { Text($0) }
+                    ForEach(ClassType.allCases, id: \.self) { classType in
+                        Text(classType.rawValue).tag(classType)
+                    }
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 
-                if selectedLevel == "Excellent/Masters" {
+                // 🔹 Show Small Dog Measurement only for Excellent/Masters
+                if selectedLevel == .excellentMasters {
                     MeasurementInput(title: "Small Dog Measurement", value: $smallDogMeasurement)
                 }
+                
                 MeasurementInput(title: "Big Dog Measurement", value: $bigDogMeasurement)
                 
                 Button(action: calculateSCTs) {
@@ -61,10 +77,15 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
                 
-                TableView(computedYards: computedYards, regularValues: regularValues, preferredValues: preferredValues, regularYPS: regularYPS)
-                    .frame(height: 250)
+                TableView(
+                    computedYards: computedYards,
+                    regularValues: regularValues,
+                    preferredValues: preferredValues,
+                    regularYPS: regularYPS
+                )
+                .frame(height: 250)
                 
-                Spacer()
+                WarningOutput(warnings: warningMessages)
             }
             .padding()
             .navigationTitle("AKC SCT Calculator")
@@ -116,5 +137,30 @@ struct TableView: View {
         }
         .padding()
         .border(Color.gray, width: 1)
+    }
+}
+
+struct WarningOutput: View {
+    let warnings: [String]
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            ForEach(warnings.indices, id: \.self) { index in
+                HStack {
+                    Text(warnings[index]) // Use direct string access
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(5)
+                }
+                .background(Color.yellow.opacity(0.2)) // Adds light background for visibility
+                .cornerRadius(5)
+                
+                if index < warnings.count - 1 { // Prevents extra divider at the end
+                    Divider()
+                }
+            }
+        }
+        .padding()
+        .border(Color.gray, width: 1)
+        .frame(maxWidth: 350) // Restricts table width
     }
 }
