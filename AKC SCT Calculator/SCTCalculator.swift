@@ -18,7 +18,7 @@ enum ClassType: String, CaseIterable {
 
 // MARK: - SCT Calculator
 class SCTCalculator {
-    
+    // use input value as yards if less than 220
     func convertToYards(_ value: Int) -> Int {
         value > 220 ? value / 3 : value
     }
