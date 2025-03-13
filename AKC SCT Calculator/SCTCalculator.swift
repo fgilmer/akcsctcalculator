@@ -11,7 +11,7 @@ class SCTCalculator {
     }
     
     func calculateYardsPerSecond(level: String, classType: String, computedYards: [Int]) -> [Int] {
-        var ypsValues = getBaseYPS(level: level, classType: classType)
+        let ypsValues = getBaseYPS(level: level, classType: classType)
         var sctValues = [Int]()
         for (index,item) in ypsValues.enumerated() {
             var roundedYPS = Int((Double(computedYards[index]) / item).rounded())
