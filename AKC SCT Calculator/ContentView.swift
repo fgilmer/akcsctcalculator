@@ -1,45 +1,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State internal var excellentSmallDogMeasurement = ""
-    @State internal var excellentBigDogMeasurement = ""
-    @State internal var openMeasurement = ""
-    @State internal var noviceMeasurement = ""
-    @State internal var selectedLevel = "Excellent/Masters"
+    @State private var smallDogMeasurement = ""
+    @State private var bigDogMeasurement = ""
+    @State private var selectedLevel = "Excellent/Masters"
     @State private var selectedClassType = "Standard"
-    @State internal var computedYards = Array(repeating: 0, count: 5)
+    @State private var computedYards = Array(repeating: 0, count: 5)
     
     let levels = ["Excellent/Masters", "Open", "Novice"]
     let classTypes = ["Standard", "Jumpers with Weaves"]
     let regularValues = [8, 12, 16, 20, 24]
     let preferredValues = [4, 8, 12, 16, 20]
-    
-    func convertToYards(_ value: Int) -> Int { value > 220 ? value / 3 : value }
+    let calculator = SCTCalculator()
     
     func calculateSCTs() {
-        switch selectedLevel {
-        case "Excellent/Masters":
-            if let smallDogValue = Int(excellentSmallDogMeasurement),
-               let bigDogValue = Int(excellentBigDogMeasurement),
-               smallDogValue > 0, bigDogValue > 0 {
-                
-                let adjustedSmall = convertToYards(smallDogValue)
-                let adjustedBig = convertToYards(bigDogValue)
-                let averageValue = (adjustedSmall + adjustedBig) / 2
-                
-                computedYards = [adjustedSmall, adjustedSmall, averageValue, adjustedBig, adjustedBig]
-            }
-        case "Open":
-            if let openValue = Int(openMeasurement), openValue > 0 {
-                computedYards = Array(repeating: convertToYards(openValue), count: 5)
-            }
-        case "Novice":
-            if let noviceValue = Int(noviceMeasurement), noviceValue > 0 {
-                computedYards = Array(repeating: convertToYards(noviceValue), count: 5)
-            }
-        default:
-            computedYards = Array(repeating: 0, count: 5)
-        }
+        computedYards = calculator.calculateComputedYards(
+            level: selectedLevel,
+            smallDogMeasurement: Int(smallDogMeasurement),
+            bigDogMeasurement: Int(bigDogMeasurement)
+        )
     }
     
     var body: some View {
@@ -55,16 +34,10 @@ struct ContentView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 
-                Group {
-                    if selectedLevel == "Excellent/Masters" {
-                        MeasurementInput(title: "Small Dog Measurement", value: $excellentSmallDogMeasurement)
-                        MeasurementInput(title: "Big Dog Measurement", value: $excellentBigDogMeasurement)
-                    } else if selectedLevel == "Open" {
-                        MeasurementInput(title: "Open Measurement", value: $openMeasurement)
-                    } else if selectedLevel == "Novice" {
-                        MeasurementInput(title: "Novice Measurement", value: $noviceMeasurement)
-                    }
+                if selectedLevel == "Excellent/Masters" {
+                    MeasurementInput(title: "Small Dog Measurement", value: $smallDogMeasurement)
                 }
+                MeasurementInput(title: "Big Dog Measurement", value: $bigDogMeasurement)
                 
                 Button(action: calculateSCTs) {
                     Text("Calculate SCTs")
@@ -93,9 +66,14 @@ struct MeasurementInput: View {
     @Binding var value: String
     
     var body: some View {
-        TextField(title, text: $value)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .keyboardType(.numberPad)
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.headline)
+            TextField(title, text: $value)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+        }
+        .padding(.horizontal)
     }
 }
 
