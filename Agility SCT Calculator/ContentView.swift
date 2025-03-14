@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  AKC SCT Calculator ContentView
+//  Agility SCT Calculator ContentView
 //
 //  Created by FRANK GILMER on 3/11/25.
 //
@@ -57,7 +57,7 @@ struct ContentView: View {
                 }
             }
             .padding()
-            .navigationTitle("AKC SCT Calculator")
+            .navigationTitle("Agility SCT Calculator")
         }
     }
 }

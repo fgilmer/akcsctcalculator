@@ -1,12 +1,12 @@
 //
 //  SCTViewModelTests.swift
-//  AKC SCT Calculator
+//  Agility SCT Calculator
 //
 //  Created by FRANK GILMER on 3/13/25.
 //
 
 import XCTest
-@testable import AKC_SCT_Calculator
+@testable import Agility_SCT_Calculator
 
 class SCTViewModelTests: XCTestCase {
     var viewModel: SCTViewModel!

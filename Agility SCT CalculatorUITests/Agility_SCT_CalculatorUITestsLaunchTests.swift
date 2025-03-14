@@ -1,13 +1,13 @@
 //
-//  AKC_SCT_CalculatorUITestsLaunchTests.swift
-//  AKC SCT CalculatorUITests
+//  Agility_SCT_CalculatorUITestsLaunchTests.swift
+//  Agility SCT CalculatorUITests
 //
 //  Created by FRANK GILMER on 3/11/25.
 //
 
 import XCTest
 
-final class AKC_SCT_CalculatorUITestsLaunchTests: XCTestCase {
+final class Agility_SCT_CalculatorUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

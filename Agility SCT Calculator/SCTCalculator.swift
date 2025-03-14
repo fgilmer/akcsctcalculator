@@ -1,6 +1,6 @@
 //
 //  SCTCalculator.swift
-//  AKC SCT Calculator Calculations
+//  Agility SCT Calculator Calculations
 //
 //  Created by FRANK GILMER on 3/13/25.
 //

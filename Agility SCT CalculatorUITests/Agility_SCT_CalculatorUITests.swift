@@ -1,13 +1,13 @@
 //
-//  AKC_SCT_CalculatorUITests.swift
-//  AKC SCT CalculatorUITests
+//  Agility_SCT_CalculatorUITests.swift
+//  Agility SCT CalculatorUITests
 //
 //  Created by FRANK GILMER on 3/11/25.
 //
 
 import XCTest
 
-final class AKC_SCT_CalculatorUITests: XCTestCase {
+final class Agility_SCT_CalculatorUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

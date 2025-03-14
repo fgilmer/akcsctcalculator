@@ -30,19 +30,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9F00DF442D810BB4009F44C3 /* AKC SCT Calculator */ = {
+		9F00DF442D810BB4009F44C3 /* Agility SCT Calculator */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "AKC SCT Calculator";
+			path = "Agility SCT Calculator";
 			sourceTree = "<group>";
 		};
-		9F00DF5A2D810BB5009F44C3 /* AKC SCT CalculatorTests */ = {
+		9F00DF5A2D810BB5009F44C3 /* Agility SCT CalculatorTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "AKC SCT CalculatorTests";
+			path = "Agility SCT CalculatorTests";
 			sourceTree = "<group>";
 		};
-		9F00DF642D810BB5009F44C3 /* AKC SCT CalculatorUITests */ = {
+		9F00DF642D810BB5009F44C3 /* Agility SCT CalculatorUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "AKC SCT CalculatorUITests";
+			path = "Agility SCT CalculatorUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +75,9 @@
 		9F00DF392D810BB4009F44C3 = {
 			isa = PBXGroup;
 			children = (
-				9F00DF442D810BB4009F44C3 /* AKC SCT Calculator */,
-				9F00DF5A2D810BB5009F44C3 /* AKC SCT CalculatorTests */,
-				9F00DF642D810BB5009F44C3 /* AKC SCT CalculatorUITests */,
+				9F00DF442D810BB4009F44C3 /* Agility SCT Calculator */,
+				9F00DF5A2D810BB5009F44C3 /* Agility SCT CalculatorTests */,
+				9F00DF642D810BB5009F44C3 /* Agility SCT CalculatorUITests */,
 				9F00DF432D810BB4009F44C3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				9F00DF442D810BB4009F44C3 /* AKC SCT Calculator */,
+				9F00DF442D810BB4009F44C3 /* Agility SCT Calculator */,
 			);
 			name = "AKC SCT Calculator";
 			packageProductDependencies = (
@@ -131,7 +131,7 @@
 				9F00DF592D810BB5009F44C3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				9F00DF5A2D810BB5009F44C3 /* AKC SCT CalculatorTests */,
+				9F00DF5A2D810BB5009F44C3 /* Agility SCT CalculatorTests */,
 			);
 			name = "AKC SCT CalculatorTests";
 			packageProductDependencies = (
@@ -154,7 +154,7 @@
 				9F00DF632D810BB5009F44C3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				9F00DF642D810BB5009F44C3 /* AKC SCT CalculatorUITests */,
+				9F00DF642D810BB5009F44C3 /* Agility SCT CalculatorUITests */,
 			);
 			name = "AKC SCT CalculatorUITests";
 			packageProductDependencies = (
