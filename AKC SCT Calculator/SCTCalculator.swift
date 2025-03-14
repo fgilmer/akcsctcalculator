@@ -90,7 +90,12 @@ class SCTCalculator {
             .standard: (186, 195),
             .jumpers: (175, 183)
         ]
-        
+
+        let differences: [ClassType: (min: Int, max: Int)] = [
+            .standard: (7, 14),
+            .jumpers: (8, 16)
+        ]
+
         guard let limits = thresholds[classType] else { return [] }
 
         var warnings = [String]()
@@ -104,6 +109,17 @@ class SCTCalculator {
             warnings.append("Large Dog Measurement max is \(limits.largeDogMax)")
         }
 
+        if !warnings.isEmpty {
+            return warnings
+        }
+        
+        guard let diffs = differences[classType] else {return[]}
+        if level == .excellentMasters {
+            let measurementDiff = computedYards[3] - computedYards[0]
+            if measurementDiff < diffs.min || measurementDiff > diffs.max {
+                warnings.append("Typical difference is \(diffs.min) to \(diffs.max)")
+            }
+        }
         return warnings
     }
 }

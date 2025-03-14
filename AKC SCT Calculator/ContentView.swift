@@ -11,50 +11,54 @@ struct ContentView: View {
     @ObservedObject var viewModel = SCTViewModel()
 
     var body: some View {
-        VStack(spacing: 20) {
-            Picker("Select Level", selection: $viewModel.selectedLevel) {
-                ForEach(Level.allCases, id: \.self) { level in
-                    Text(level.rawValue).tag(level)
+        NavigationView {
+            VStack(spacing: 20) {
+                Picker("Select Level", selection: $viewModel.selectedLevel) {
+                    ForEach(Level.allCases, id: \.self) { level in
+                        Text(level.rawValue).tag(level)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                
+                Picker("Select Class Type", selection: $viewModel.selectedClassType) {
+                    ForEach(ClassType.allCases, id: \.self) { classType in
+                        Text(classType.rawValue).tag(classType)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                
+                if viewModel.selectedLevel == .excellentMasters {
+                    MeasurementInput(title: "Small Dog Measurement", value: $viewModel.smallDogMeasurement)
+                }
+                
+                MeasurementInput(title: "Big Dog Measurement", value: $viewModel.bigDogMeasurement)
+                
+                Button(action: viewModel.calculateSCTs) {
+                    Text("Calculate SCTs")
+                        .font(.headline)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.horizontal)
+                
+                TableView(
+                    computedYards: viewModel.computedYards,
+                    regularValues: [8, 12, 16, 20, 24],
+                    preferredValues: [4, 8, 12, 16, 20],
+                    regularYPS: viewModel.regularYPS
+                )
+                .frame(height: 200)
+                
+                if !viewModel.warningMessages.isEmpty {
+                    WarningOutput(warnings: viewModel.warningMessages)
                 }
             }
-            .pickerStyle(SegmentedPickerStyle())
-
-            Picker("Select Class Type", selection: $viewModel.selectedClassType) {
-                ForEach(ClassType.allCases, id: \.self) { classType in
-                    Text(classType.rawValue).tag(classType)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-
-            if viewModel.selectedLevel == .excellentMasters {
-                MeasurementInput(title: "Small Dog Measurement", value: $viewModel.smallDogMeasurement)
-            }
-            
-            MeasurementInput(title: "Big Dog Measurement", value: $viewModel.bigDogMeasurement)
-
-            Button(action: viewModel.calculateSCTs) {
-                Text("Calculate SCTs")
-                    .font(.headline)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-            .padding(.horizontal)
-
-            TableView(
-                computedYards: viewModel.computedYards,
-                regularValues: [8, 12, 16, 20, 24],
-                preferredValues: [4, 8, 12, 16, 20],
-                regularYPS: viewModel.regularYPS
-            )
-            .frame(height: 250)
-
-            WarningOutput(warnings: viewModel.warningMessages)
+            .padding()
+            .navigationTitle("AKC SCT Calculator")
         }
-        .padding()
-        .navigationTitle("AKC SCT Calculator")
     }
 }
 
@@ -109,7 +113,7 @@ struct WarningOutput: View {
     let warnings: [String]
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             ForEach(warnings.indices, id: \.self) { index in
                 HStack {
                     Text(warnings[index]) // Use direct string access
