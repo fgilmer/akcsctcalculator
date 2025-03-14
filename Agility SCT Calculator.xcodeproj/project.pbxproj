@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9F00DF422D810BB4009F44C3 /* AKC SCT Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AKC SCT Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F00DF572D810BB5009F44C3 /* AKC SCT CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AKC SCT CalculatorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F00DF612D810BB5009F44C3 /* AKC SCT CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AKC SCT CalculatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F00DF422D810BB4009F44C3 /* Agility SCT Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agility SCT Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F00DF572D810BB5009F44C3 /* Agility SCT CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Agility SCT CalculatorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F00DF612D810BB5009F44C3 /* Agility SCT CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Agility SCT CalculatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,9 +85,9 @@
 		9F00DF432D810BB4009F44C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F00DF422D810BB4009F44C3 /* AKC SCT Calculator.app */,
-				9F00DF572D810BB5009F44C3 /* AKC SCT CalculatorTests.xctest */,
-				9F00DF612D810BB5009F44C3 /* AKC SCT CalculatorUITests.xctest */,
+				9F00DF422D810BB4009F44C3 /* Agility SCT Calculator.app */,
+				9F00DF572D810BB5009F44C3 /* Agility SCT CalculatorTests.xctest */,
+				9F00DF612D810BB5009F44C3 /* Agility SCT CalculatorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9F00DF412D810BB4009F44C3 /* AKC SCT Calculator */ = {
+		9F00DF412D810BB4009F44C3 /* Agility SCT Calculator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F00DF6B2D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "AKC SCT Calculator" */;
+			buildConfigurationList = 9F00DF6B2D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "Agility SCT Calculator" */;
 			buildPhases = (
 				9F00DF3E2D810BB4009F44C3 /* Sources */,
 				9F00DF3F2D810BB4009F44C3 /* Frameworks */,
@@ -110,16 +110,16 @@
 			fileSystemSynchronizedGroups = (
 				9F00DF442D810BB4009F44C3 /* Agility SCT Calculator */,
 			);
-			name = "AKC SCT Calculator";
+			name = "Agility SCT Calculator";
 			packageProductDependencies = (
 			);
 			productName = "AKC SCT Calculator";
-			productReference = 9F00DF422D810BB4009F44C3 /* AKC SCT Calculator.app */;
+			productReference = 9F00DF422D810BB4009F44C3 /* Agility SCT Calculator.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9F00DF562D810BB5009F44C3 /* AKC SCT CalculatorTests */ = {
+		9F00DF562D810BB5009F44C3 /* Agility SCT CalculatorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F00DF6E2D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "AKC SCT CalculatorTests" */;
+			buildConfigurationList = 9F00DF6E2D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "Agility SCT CalculatorTests" */;
 			buildPhases = (
 				9F00DF532D810BB5009F44C3 /* Sources */,
 				9F00DF542D810BB5009F44C3 /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				9F00DF5A2D810BB5009F44C3 /* Agility SCT CalculatorTests */,
 			);
-			name = "AKC SCT CalculatorTests";
+			name = "Agility SCT CalculatorTests";
 			packageProductDependencies = (
 			);
 			productName = "AKC SCT CalculatorTests";
-			productReference = 9F00DF572D810BB5009F44C3 /* AKC SCT CalculatorTests.xctest */;
+			productReference = 9F00DF572D810BB5009F44C3 /* Agility SCT CalculatorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9F00DF602D810BB5009F44C3 /* AKC SCT CalculatorUITests */ = {
+		9F00DF602D810BB5009F44C3 /* Agility SCT CalculatorUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F00DF712D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "AKC SCT CalculatorUITests" */;
+			buildConfigurationList = 9F00DF712D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "Agility SCT CalculatorUITests" */;
 			buildPhases = (
 				9F00DF5D2D810BB5009F44C3 /* Sources */,
 				9F00DF5E2D810BB5009F44C3 /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				9F00DF642D810BB5009F44C3 /* Agility SCT CalculatorUITests */,
 			);
-			name = "AKC SCT CalculatorUITests";
+			name = "Agility SCT CalculatorUITests";
 			packageProductDependencies = (
 			);
 			productName = "AKC SCT CalculatorUITests";
-			productReference = 9F00DF612D810BB5009F44C3 /* AKC SCT CalculatorUITests.xctest */;
+			productReference = 9F00DF612D810BB5009F44C3 /* Agility SCT CalculatorUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9F00DF412D810BB4009F44C3 /* AKC SCT Calculator */,
-				9F00DF562D810BB5009F44C3 /* AKC SCT CalculatorTests */,
-				9F00DF602D810BB5009F44C3 /* AKC SCT CalculatorUITests */,
+				9F00DF412D810BB4009F44C3 /* Agility SCT Calculator */,
+				9F00DF562D810BB5009F44C3 /* Agility SCT CalculatorTests */,
+				9F00DF602D810BB5009F44C3 /* Agility SCT CalculatorUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		9F00DF592D810BB5009F44C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F00DF412D810BB4009F44C3 /* AKC SCT Calculator */;
+			target = 9F00DF412D810BB4009F44C3 /* Agility SCT Calculator */;
 			targetProxy = 9F00DF582D810BB5009F44C3 /* PBXContainerItemProxy */;
 		};
 		9F00DF632D810BB5009F44C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F00DF412D810BB4009F44C3 /* AKC SCT Calculator */;
+			target = 9F00DF412D810BB4009F44C3 /* Agility SCT Calculator */;
 			targetProxy = 9F00DF622D810BB5009F44C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -395,7 +395,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AKC SCT Calculator/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Agility SCT Calculator/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -408,7 +408,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.akcsct.AKC-SCT-Calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -423,7 +423,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AKC SCT Calculator/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Agility SCT Calculator/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -436,7 +436,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.akcsct.AKC-SCT-Calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -453,7 +453,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.akcsct.AKC-SCT-CalculatorTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-CalculatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -471,7 +471,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.akcsct.AKC-SCT-CalculatorTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-CalculatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -487,12 +487,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.akcsct.AKC-SCT-CalculatorUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-CalculatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "AKC SCT Calculator";
+				TEST_TARGET_NAME = "Agility SCT Calculator";
 			};
 			name = Debug;
 		};
@@ -503,12 +503,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.akcsct.AKC-SCT-CalculatorUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-CalculatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "AKC SCT Calculator";
+				TEST_TARGET_NAME = "Agility SCT Calculator";
 			};
 			name = Release;
 		};
@@ -524,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F00DF6B2D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "AKC SCT Calculator" */ = {
+		9F00DF6B2D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "Agility SCT Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F00DF6C2D810BB5009F44C3 /* Debug */,
@@ -533,7 +533,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F00DF6E2D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "AKC SCT CalculatorTests" */ = {
+		9F00DF6E2D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "Agility SCT CalculatorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F00DF6F2D810BB5009F44C3 /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F00DF712D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "AKC SCT CalculatorUITests" */ = {
+		9F00DF712D810BB5009F44C3 /* Build configuration list for PBXNativeTarget "Agility SCT CalculatorUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F00DF722D810BB5009F44C3 /* Debug */,
