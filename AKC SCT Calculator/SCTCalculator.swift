@@ -86,40 +86,37 @@ class SCTCalculator {
     func checkComputedYards(level: Level, classType: ClassType, computedYards: [Int]) -> [String] {
         guard computedYards.count > 3 else { return [] }
 
-        let thresholds: [ClassType: (smallDogMax: Int, largeDogMax: Int)] = [
-            .standard: (186, 195),
-            .jumpers: (175, 183)
+        let classLimits: [ClassType: (smallDogMax: Int, largeDogMax: Int, minDiff: Int, maxDiff: Int)] = [
+            .standard: (186, 195, 7, 14),
+            .jumpers: (175, 183, 8, 16)
         ]
 
-        let differences: [ClassType: (min: Int, max: Int)] = [
-            .standard: (7, 14),
-            .jumpers: (8, 16)
-        ]
-
-        guard let limits = thresholds[classType] else { return [] }
-
+        guard let limits = classLimits[classType] else { return [] }
+        
         var warnings = [String]()
 
-        // only need to check this for excellent
-        if level == .excellentMasters,computedYards[1] > limits.smallDogMax {
+        // Only check small dog measurement for Excellent Masters
+        if level == .excellentMasters, computedYards[1] > limits.smallDogMax {
             warnings.append("Small Dog Measurement max is \(limits.smallDogMax)")
         }
-        
+
         if computedYards[3] > limits.largeDogMax {
             warnings.append("Large Dog Measurement max is \(limits.largeDogMax)")
         }
 
+        // Return if any errors to this point the rest are informational
         if !warnings.isEmpty {
-            return warnings
+                    return warnings
         }
         
-        guard let diffs = differences[classType] else {return[]}
+        // Check measurement difference if no warnings exist
         if level == .excellentMasters {
             let measurementDiff = computedYards[3] - computedYards[0]
-            if measurementDiff < diffs.min || measurementDiff > diffs.max {
-                warnings.append("Typical difference is \(diffs.min) to \(diffs.max)")
+            if measurementDiff < limits.minDiff || measurementDiff > limits.maxDiff {
+                warnings.append("Typical difference is \(limits.minDiff) to \(limits.maxDiff)")
             }
         }
+
         return warnings
     }
 }
