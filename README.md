@@ -1,2 +1,2 @@
 # akcsctcalculator
-SCT Calculator for AKC agility
+SCT Calculator for AKC Agility

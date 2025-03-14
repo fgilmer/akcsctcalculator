@@ -12,14 +12,14 @@
 			containerPortal = 9F00DF3A2D810BB4009F44C3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9F00DF412D810BB4009F44C3;
-			remoteInfo = "AKC SCT Calculator";
+			remoteInfo = "Agility SCT Calculator";
 		};
 		9F00DF622D810BB5009F44C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F00DF3A2D810BB4009F44C3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9F00DF412D810BB4009F44C3;
-			remoteInfo = "AKC SCT Calculator";
+			remoteInfo = "Agility SCT Calculator";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -113,7 +113,7 @@
 			name = "Agility SCT Calculator";
 			packageProductDependencies = (
 			);
-			productName = "AKC SCT Calculator";
+			productName = "Agility SCT Calculator";
 			productReference = 9F00DF422D810BB4009F44C3 /* Agility SCT Calculator.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -136,7 +136,7 @@
 			name = "Agility SCT CalculatorTests";
 			packageProductDependencies = (
 			);
-			productName = "AKC SCT CalculatorTests";
+			productName = "Agility SCT CalculatorTests";
 			productReference = 9F00DF572D810BB5009F44C3 /* Agility SCT CalculatorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -159,7 +159,7 @@
 			name = "Agility SCT CalculatorUITests";
 			packageProductDependencies = (
 			);
-			productName = "AKC SCT CalculatorUITests";
+			productName = "Agility SCT CalculatorUITests";
 			productReference = 9F00DF612D810BB5009F44C3 /* Agility SCT CalculatorUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -408,7 +408,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-Calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.Agility-SCT-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -436,7 +436,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-Calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.Agility-SCT-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -458,7 +458,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AKC SCT Calculator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AKC SCT Calculator";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agility SCT Calculator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Agility SCT Calculator";
 			};
 			name = Debug;
 		};
@@ -471,12 +471,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-CalculatorTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.Agility-SCT-CalculatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AKC SCT Calculator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AKC SCT Calculator";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agility SCT Calculator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Agility SCT Calculator";
 			};
 			name = Release;
 		};
@@ -503,7 +503,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.AGILITY-SCT-CalculatorUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fgilmer.agilsct.Agility-SCT-CalculatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
