@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9F00DF3D2D810BB4009F44C3 /* Build configuration list for PBXProject "AKC SCT Calculator" */;
+			buildConfigurationList = 9F00DF3D2D810BB4009F44C3 /* Build configuration list for PBXProject "Agility SCT Calculator" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -515,7 +515,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F00DF3D2D810BB4009F44C3 /* Build configuration list for PBXProject "AKC SCT Calculator" */ = {
+		9F00DF3D2D810BB4009F44C3 /* Build configuration list for PBXProject "Agility SCT Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F00DF692D810BB5009F44C3 /* Debug */,
