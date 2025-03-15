@@ -130,6 +130,6 @@ struct WarningOutput: View {
         }
         .padding()
         .border(Color.gray, width: 1)
-        .frame(maxWidth: 350) // Restricts table width
+        .frame(maxWidth: 375) // Restricts table width
     }
 }

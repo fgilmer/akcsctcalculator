@@ -95,13 +95,23 @@ class SCTCalculator {
         
         var warnings = [String]()
 
+        if level == .excellentMasters && (computedYards[0] == 0 || computedYards[3] == 0) {
+            warnings.append("Both Dog Measurements are required")
+        } else if computedYards[3] == 0 {
+            warnings.append("Big Dog Measurement required")
+        }
+        // Return if any errors to this point the rest are informational
+        if !warnings.isEmpty {
+                    return warnings
+        }
+        
         // Only check small dog measurement for Excellent Masters
-        if level == .excellentMasters, computedYards[1] > limits.smallDogMax {
-            warnings.append("Small Dog Measurement max is \(limits.smallDogMax)")
+        if level == .excellentMasters, computedYards[0] > limits.smallDogMax {
+            warnings.append("Small Dog Measurement max is \(limits.smallDogMax) yards")
         }
 
         if computedYards[3] > limits.largeDogMax {
-            warnings.append("Large Dog Measurement max is \(limits.largeDogMax)")
+            warnings.append("Large Dog Measurement max is \(limits.largeDogMax) yards")
         }
 
         // Return if any errors to this point the rest are informational
@@ -113,7 +123,7 @@ class SCTCalculator {
         if level == .excellentMasters {
             let measurementDiff = computedYards[3] - computedYards[0]
             if measurementDiff < limits.minDiff || measurementDiff > limits.maxDiff {
-                warnings.append("Typical difference is \(limits.minDiff) to \(limits.maxDiff)")
+                warnings.append("Typical difference is \(limits.minDiff) to \(limits.maxDiff) yards")
             }
         }
 

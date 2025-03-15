@@ -49,6 +49,6 @@ class SCTViewModelTests: XCTestCase {
         viewModel.calculateSCTs()
 
         XCTAssertEqual(viewModel.computedYards, [0, 0, 0, 0, 0])
-        XCTAssertTrue(viewModel.warningMessages.isEmpty)
+        XCTAssertFalse(viewModel.warningMessages.isEmpty)
     }
 }
