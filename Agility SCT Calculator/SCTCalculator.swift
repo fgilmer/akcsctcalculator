@@ -86,7 +86,7 @@ class SCTCalculator {
     func checkComputedYards(level: Level, classType: ClassType, computedYards: [Int]) -> [String] {
         guard computedYards.count > 3 else { return [] }
 
-        let classLimits: [ClassType: (smallDogMax: Int, largeDogMax: Int, minDiff: Int, maxDiff: Int)] = [
+        let classLimits: [ClassType: (smallDogMax: Int, bigDogMax: Int, minDiff: Int, maxDiff: Int)] = [
             .standard: (186, 195, 7, 14),
             .jumpers: (175, 183, 8, 16)
         ]
@@ -110,8 +110,8 @@ class SCTCalculator {
             warnings.append("Small Dog Measurement max is \(limits.smallDogMax) yards")
         }
 
-        if computedYards[3] > limits.largeDogMax {
-            warnings.append("Large Dog Measurement max is \(limits.largeDogMax) yards")
+        if computedYards[3] > limits.bigDogMax {
+            warnings.append("Big Dog Measurement max is \(limits.bigDogMax) yards")
         }
 
         // Return if any errors to this point the rest are informational

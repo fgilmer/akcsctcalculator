@@ -85,14 +85,14 @@ class SCTCalculatorTests: XCTestCase {
         XCTAssertEqual(result, ["Small Dog Measurement max is 186 yards"])
     }
 
-    func testCheckComputedYards_LargeDogExceedsMax() {
+    func testCheckComputedYards_BigDogExceedsMax() {
         let result = calculator.checkComputedYards(level: .excellentMasters, classType: .standard, computedYards: [150, 150, 0, 200, 0])
-        XCTAssertEqual(result, ["Large Dog Measurement max is 195 yards"])
+        XCTAssertEqual(result, ["Big Dog Measurement max is 195 yards"])
     }
 
     func testCheckComputedYards_BothDogsExceedMax() {
         let result = calculator.checkComputedYards(level: .excellentMasters, classType: .jumpers, computedYards: [180, 180, 0, 190, 0])
-        XCTAssertEqual(result, ["Small Dog Measurement max is 175 yards", "Large Dog Measurement max is 183 yards"])
+        XCTAssertEqual(result, ["Small Dog Measurement max is 175 yards", "Big Dog Measurement max is 183 yards"])
     }
 
     func testCheckComputedYards_ValidDifference_NoWarnings() {
